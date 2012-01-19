@@ -32,7 +32,7 @@ def import_data(path, digits=None):
         n_col = filtered_arr.shape[1]
         answers = filtered_arr[:,n_col-1]
         answers = filter_digit(answers, digits)
-        answers = array(filter_digit)
+        answers = np.array(answers)
         filtered_arr[:,n_col-1] = -1
         return filtered_arr, answers
 
@@ -82,7 +82,7 @@ def train(features, answers, epochs, learning_rate):
         for i, input_vec in enumerate(features):
             activated = activation(input_vec, weights)
             answer = answers[i]
-            weights = update_weights(input_vec, weights, activation, answer, learning_rate)
+            weights = update_weights(input_vec, weights, activated, answer, learning_rate)
         
         epochs -= epochs
     
